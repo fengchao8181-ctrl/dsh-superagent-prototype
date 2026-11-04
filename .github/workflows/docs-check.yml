@@ -1,0 +1,18 @@
+name: docs-check
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: README must contain a Quick Start section
+        run: |
+          if ! grep -q '^## Quick Start' README.md; then
+            echo "::error::README.md is missing a '## Quick Start' section"
+            exit 1
+          fi
+          echo "docs-check passed"
