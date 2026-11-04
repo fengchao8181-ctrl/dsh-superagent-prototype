@@ -16,6 +16,28 @@ Setup has many steps, so an agent does it with you. Ask your coding agent:
 
 It asks one short question at a time, shows the full plan once, and then installs and configures everything. [SETUP.md](SETUP.md) is what it follows.
 
+## Quick Start
+
+Prerequisites: Node.js 22.19+ or 24+, pnpm, git 2.32+, Python 3.8+, tmux, and GitHub CLI 2.48 or later.
+
+From a checkout of this repository:
+
+```sh
+npm install -g @deepseek-ai/dsh@0.2.1-rc.3
+pnpm install && pnpm build
+dsh superagent --from-default-profile web --dump-config > /dev/null
+dsh plugin --profile superagent add "link:$PWD"
+```
+
+Copy [examples/profile.cordis.patch.yml](examples/profile.cordis.patch.yml) to `~/.dsh/profiles/superagent/cordis.patch.yml` and replace every `<placeholder>` before the first start. Then start the service and check it:
+
+```sh
+scripts/dsh-superagent start
+scripts/dsh-superagent status
+```
+
+This is the short path. For the full guided setup, see [SETUP.md](SETUP.md) and [006 Deployment](docs/006-deployment.md).
+
 ## Documentation
 
 Read the numbered documents in order; each builds only on the ones before it.
